@@ -1,10 +1,44 @@
 var userJsonUrl = '/users/view/';
 var skillJsonUrl = '/skills.json';
-var skillTreeJsonUrl = '/skills-tree/listTree.json';
+var skillTreeJsonUrl = '/skills-tree.json';
+var statsJsonUrl = '/stats.json'
 
 var skillTree = {
-    availableSkills: ko.observable(),
-    treeStructure: ko.observable(),
+    availableSkills: ko.observable({
+        1: {
+            name: 'First Skill',
+        },
+        2: {
+            name: 'Second Skill',
+            depends: 1,
+        },
+        3: {
+            name: 'Third Skill',
+            depends: 1,
+        },
+        4: {
+            name: 'Fourth Skill',
+            depends: 3,
+        }
+    }),
+    treeStructure: ko.observable({
+
+    }),
+    availableStats: ko.observable({
+        1: {
+            name: 'First Stat',
+        },
+        2: {
+            name: 'Second Stat',
+        },
+        3: {
+            name: 'Third Stat',
+        },
+        4: {
+            name: 'Fourth Stat'
+        },
+    }),
+
     userId: '70363db3-80fb-449e-8b5f-1cc590a4bf9a',
     character: {
         userId: ko.observable(0),
@@ -20,6 +54,14 @@ var skillTree = {
             1: 0,
             2: 0,
             3: 0
+        }),
+        stats2: ko.observableArray([
+            { skill: 'Charisma', level: '9' },
+            { skill: 'PHP', level: '6'},
+            { skill: 'Lol', level: '4'}
+        ]),
+        stats3: ko.observable({
+            
         }),
         populateFromJson: function() {
             $.getJSON(userJsonUrl + skillTree.userId + '.json', function(response) {
@@ -58,5 +100,15 @@ var skillTree = {
             skillsTree = response.skillsTree;
             skillTree.treeStructure(skillsTree);
         });
+
+        $.getJSON(skillJsonUrl, function(response) {
+            var statsList = new Object;
+            statsJson = respone.stats;
+            for (skillId in skillsJson) {
+                statsList[statsJson[statsId].id] = statsJson[statsId];
+            }
+            statsJson.availableStats(statsList);
+        });
+
     }
 }

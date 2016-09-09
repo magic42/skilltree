@@ -7,20 +7,11 @@ var skillTree = {
     treeStructure: ko.observable(),
     userId: '70363db3-80fb-449e-8b5f-1cc590a4bf9a',
     character: {
-        userId: ko.observable(0),
-        name: ko.observable('Your Name'),
-        skills: ko.observable({
-            1: 0,
-            2: 0,
-            3: 0,
-            4: 0
-        }),
-        badges: ko.observable([1]),
-        stats: ko.observable({
-            1: 0,
-            2: 0,
-            3: 0
-        }),
+        userId: ko.observable(),
+        name: ko.observable(),
+        skills: ko.observable(),
+        badges: ko.observable(),
+        stats: ko.observable(),
         populateFromJson: function() {
             $.getJSON(userJsonUrl + skillTree.userId + '.json', function(response) {
                 userJson = response.user;
@@ -31,16 +22,24 @@ var skillTree = {
                 skillTree.character.stats(userJson.stats);
             });
         },
-        saveUser: function() {
-            var dataString = '?id=' + this.userId + '&name=' + this.name;
-            for (prop in this.skills) {
-                dataString += prop + '=' + this.skills[prop] + '&';
-            }
-            $.ajax({
-                type:'POST',
-                data:dataString,
-                url:userSaveUrl
-            });
+        achievedRank: function(rankId) {
+            for (skillIndex in this.skills()) {
+                for (rankIndex in this.skills()[skillIndex].ranks) {
+                    id = this.skills()[skillIndex].ranks[rankIndex].id;
+                    if (rankId == id) {
+                        return 'achieved';
+                    }
+                }
+            };
+            return 'notAchieved colorize colorize-border';
+        },
+        getClass: function(skillId) {
+            for (skillIndex in this.skills()) {
+                if (skillId == this.skills()[skillIndex].id) {
+                    return 'skillDescription achieved';
+                }
+            };
+            return 'skillDescription notAchieved colorize colorize-border';
         }
     },
     populateFromJson: function() {
@@ -58,16 +57,5 @@ var skillTree = {
             skillsTree = response.skillsTree;
             skillTree.treeStructure(skillsTree);
         });
-    },
-    addRank: function(id) {
-        if (typeof skillTree.character.skills()[id] === "undefined") {
-            skillTree.character.skills()[id] = 0;
-        }
-        skillTree.character.skills()[id]++;
-    },
-    removeRank: function(id) {
-        if (typeof skillTree.character.skills()[id] != "undefined" && typeof skillTree.character.skills()[id] != 0) {
-            skillTree.character.skills()[id]--;
-        }
     }
 }

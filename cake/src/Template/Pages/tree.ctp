@@ -28,20 +28,25 @@ $( document ).ready(function() {
         </div>
     </label>
 </script>
-<script id="skillTemplate" type="text/html">
+<script id="skill-template" type="text/html">
     <li class="skill-node">
         <div data-bind="attr: {class: skillTree.character.getClass(id)}">
             <!-- if: hasImage == true -->
             <!-- <img width=16px height=16px data-bind="src: imageURL"> -->
             <!-- -->
-            <p data-bind="text: name"></p>
+            <div class="nodeNameAndDescription">
+                <p data-bind="text: name"></p>
+                <!-- ko if: skill -->
+                <div data-bind="text: skill.description" class = "nodeDescription"></div>
+                <!-- /ko -->
+            </div>
             <!-- ko if: skill -->
             <div class="ranks" data-bind="foreach: skill.ranks">
                 <div data-bind="attr: {class: skillTree.character.achievedRank(id)}"></div>
             </div>
             <!-- /ko -->
             <div class="description">Placeholder description.</div>
-        </div>
+    <li class="skillNode">
         <!-- ko if: children.length > 0 -->
         <ul class="colorize-border" data-bind="template: { name: 'skill-template', foreach: children }">
         </ul>

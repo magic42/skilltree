@@ -89,6 +89,7 @@
     border-left: 3px solid #ccc;
     width: 0; height: 20px;
 }
+
 .tree li div.skillDescription {
     background-color: #fff;
     border: 3px solid #ccc;
@@ -139,4 +140,22 @@
 
 .tree .ranks div.achieved {
     background-color: #f00;
+}
+
+.tree li div div.nodeDescription {
+    displaY: block;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1000;
+    background: #FFFFFF;
+    transition: visibility 0s, opacity 0.2s linear;
+}
+.tree li div div:hover + div.nodeDescription,
+.tree li div div.nodeDescription:hover {
+    visibility: visible;
+    opacity: 1;
+}
+.tree li div {
+    display: inline-block;
 }

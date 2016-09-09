@@ -15,7 +15,18 @@ $( document ).ready(function() {
 </script>
 <script id="skillTemplate" type="text/html">
     <li class="skillNode">
-        <div data-bind="text: name, click: skillTree.addRank.bind(id), event: { contextmenu: skillTree.removeRank.bind(id) }"></div>
+        <div data-bind="attr: {class: skillTree.character.getClass(id)}">
+            <!-- if: hasImage == true -->
+            <!-- <img width=16px height=16px data-bind="src: imageURL"> -->
+            <!-- -->
+            <p data-bind="text: name"></p>
+            <!-- ko if: skill -->
+            <div class="ranks" data-bind="foreach: skill.ranks">
+                <div data-bind="attr: {class: skillTree.character.achievedRank(id)}"></div>
+            </div>
+            <!-- /ko -->
+            <div class="description">Placeholder description.</div>
+        </div>
         <!-- ko if: children.length > 0 -->
         <ul>
             <li data-bind="template: { name: 'skillTemplate', foreach: children }">

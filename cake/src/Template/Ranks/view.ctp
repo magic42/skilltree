@@ -1,16 +1,5 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Rank'), ['action' => 'edit', $rank->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Rank'), ['action' => 'delete', $rank->id], ['confirm' => __('Are you sure you want to delete # {0}?', $rank->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Ranks'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Rank'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Skills'), ['controller' => 'Skills', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Skill'), ['controller' => 'Skills', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users Skills'), ['controller' => 'UsersSkills', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Users Skill'), ['controller' => 'UsersSkills', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
+<?= $this->Nav->display(['actions' => ['edit', 'delete'], 'id' => $rank->id]); ?>
+
 <div class="ranks view large-9 medium-8 columns content">
     <h3><?= h($rank->id) ?></h3>
     <table class="vertical-table">

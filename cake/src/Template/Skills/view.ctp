@@ -1,24 +1,5 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Skill'), ['action' => 'edit', $skill->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Skill'), ['action' => 'delete', $skill->id], ['confirm' => __('Are you sure you want to delete # {0}?', $skill->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Skills'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Skill'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Talents'), ['controller' => 'Talents', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Talent'), ['controller' => 'Talents', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Links'), ['controller' => 'Links', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Link'), ['controller' => 'Links', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Ranks'), ['controller' => 'Ranks', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Rank'), ['controller' => 'Ranks', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Nodes'), ['controller' => 'SkillsTree', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Node'), ['controller' => 'SkillsTree', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Stats'), ['controller' => 'Stats', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Stat'), ['controller' => 'Stats', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
+<?= $this->Nav->display(['actions' => ['edit', 'delete'], 'id' => $skill->id]); ?>
+
 <div class="skills view large-9 medium-8 columns content">
     <h3><?= h($skill->title) ?></h3>
     <table class="vertical-table">

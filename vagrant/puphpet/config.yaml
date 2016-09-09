@@ -10,7 +10,7 @@ vagrantfile:
                 virtualizers:
                     virtualbox:
                         modifyvm:
-                            natdnshostresolver1: false
+                            natdnshostresolver1: true
                         showgui: 0
                     vmware:
                         numvcpus: 1

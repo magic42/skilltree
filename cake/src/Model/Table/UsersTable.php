@@ -94,15 +94,21 @@ class UsersTable extends Table
                 'message' => 'Please enter a valid role'
             ]);
 
+        $validator->provider('proffer', 'Proffer\Model\Validation\ProfferRules');
+
         // Set the thumbnail resize dimensions
-//        $validator->add('photo', 'proffer', [
-//            'rule' => ['dimensions', [
-//                'min' => ['w' => 50, 'h' => 50],
-//                'max' => ['w' => 3000, 'h' => 3000]
-//            ]],
-//            'message' => 'Image is not correct dimensions.',
-//            'provider' => 'proffer'
-//        ]);
+        $validator->add('photo', 'proffer', [
+            'rule' => ['dimensions', [
+                'min' => ['w' => 50, 'h' => 50],
+                'max' => ['w' => 3000, 'h' => 3000],
+            ]],
+            'message' => 'Image is not correct dimensions.',
+            'provider' => 'proffer',
+
+        ]);
+
+        $validator->requirePresence('photo', 'create')
+            ->allowEmpty('photo', 'update');
 
         return $validator;
     }

@@ -31,6 +31,16 @@
             <th><?= __('Level') ?></th>
             <td><?= $this->Number->format($skillsTree->level) ?></td>
         </tr>
+            <tr>
+                <th><?= __('Photo') ?></th>
+                <td>
+                    <?php if($skillsTree->get('photo_dir') != "") : ?>
+                        <?php echo $this->Html->image('../files/skillstree/photo/' . $skillsTree->get('photo_dir') . '/' . $skillsTree->get('photo')); ?>
+                    <?php else :?>
+                        <h5>No image found</h5>
+                    <?php endif;?>
+                 </td>
+            </tr>
     </table>
     <div class="related">
         <h4><?= __('Related Skills Tree') ?></h4>

@@ -151,6 +151,10 @@
     </div>
     <div class="image">
         <h4><?= __('Image') ?></h4>
-        <?php echo $this->Html->image('../files/skills/photo/' . $skill->get('photo_dir') . '/' . $skill->get('photo')); ?>
+        <?php if($skill->get('photo_dir') != "") : ?>
+            <?php echo $this->Html->image('../files/skills/photo/' . $skill->get('photo_dir') . '/' . $skill->get('photo')); ?>
+        <?php else :?>
+            <h5>No image found</h5>
+        <?php endif;?>
     </div>
 </div>

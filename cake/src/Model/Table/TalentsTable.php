@@ -39,6 +39,23 @@ class TalentsTable extends Table
         $this->hasMany('Skills', [
             'foreignKey' => 'talent_id'
         ]);
+
+        // Add the behaviour and configure any options you want
+        $this->addBehavior('Proffer.Proffer', [
+            'photo' => [    // The name of your upload field
+                'root' => WWW_ROOT . 'files', // Customise the root upload folder here, or omit to use the default
+                'dir' => 'photo_dir',   // The name of the field to store the folder
+                'thumbnailSizes' => [ // Declare your thumbnails
+                    'square' => [   // Define the prefix of your thumbnail
+                        'w' => 128, // Width
+                        'h' => 128, // Height
+                        'jpeg_quality'  => 100
+                    ],
+                ],
+                'thumbnailMethod' => 'gd',   // Options are Imagick or Gd
+                'crop' => true
+            ]
+        ]);
     }
 
     /**
@@ -55,8 +72,26 @@ class TalentsTable extends Table
 
         $validator
             ->requirePresence('name', 'create')
+            ->requirePresence('photo', 'create')
             ->notEmpty('name');
 
+
+        $validator->provider('proffer', 'Proffer\Model\Validation\ProfferRules');
+
+        // Set the thumbnail resize dimensions
+        $validator->add('photo', 'proffer', [
+            'rule' => ['dimensions', [
+                'min' => ['w' => 50, 'h' => 50],
+                'max' => ['w' => 3000, 'h' => 3000],
+            ]],
+            'message' => 'Image is not correct dimensions.',
+            'provider' => 'proffer',
+
+        ]);
+
+        $validator->requirePresence('photo', 'create')
+            ->allowEmpty('photo', 'update');
+        
         return $validator;
     }
 }

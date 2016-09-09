@@ -22,9 +22,19 @@
             echo $this->Form->input('username');
             echo $this->Form->input('password');
             echo $this->Form->input('role');
-            echo $this->Form->input('skills._ids', ['options' => $skills]);
-            echo $this->Form->input('stats._ids', ['options' => $stats]);
         ?>
+        <label>Skills</label>
+        <div style="max-height: 200px; overflow: auto;">
+            <?php
+                echo $this->Form->multiCheckbox('skills._ids', $skills);
+            ?>
+        </div>
+        <label>Stats</label>
+        <div style="max-height: 200px; overflow: auto;">
+            <?php
+                echo $this->Form->multiCheckbox('stats._ids', $stats);
+            ?>
+        </div>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>

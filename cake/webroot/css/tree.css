@@ -54,7 +54,7 @@
     border-left: 1px solid #ccc;
     width: 0; height: 20px;
 }
-.tree li div{
+.tree li div div {
     border: 1px solid #ccc;
     padding: 5px 10px;
     text-decoration: none;
@@ -71,7 +71,7 @@
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
 }
-.tree li div:hover {
+.tree li div div:hover {
     background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
     cursor: pointer;
 }
@@ -80,4 +80,22 @@
 .tree li div:hover+ul::before,
 .tree li div:hover+ul ul::before{
     border-color:  #94a0b4;
+}
+
+.tree li div div.nodeDescription {
+    displaY: block;
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1000;
+    background: #FFFFFF;
+    transition: visibility 0s, opacity 0.2s linear;
+}
+.tree li div div:hover + div.nodeDescription,
+.tree li div div.nodeDescription:hover {
+    visibility: visible;
+    opacity: 1;
+}
+.tree li div {
+    display: inline-block;
 }

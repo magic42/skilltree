@@ -13,8 +13,23 @@ $( document ).ready(function() {
     console.log(skillTree);
 });
 </script>
+<script id="tree-template" type="text/html">
+    <label class="tab" data-bind="attr: { 'id': 'tab' + $index() }">
+        <div data-bind="text: name"></div>
+        <input type="radio" name="tab"></input>
+        <div class="tree"  data-bind="attr: { 'id': 'tree' + $index() }">
+            <ul>
+                <li class="skill-node colorize-border">
+                    <div class="colorize-border" data-bind="text: name"></div>
+                    <ul class="colorize-border" data-bind="template: { name: 'skill-template', foreach: children }">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </label>
+</script>
 <script id="skillTemplate" type="text/html">
-    <li class="skillNode">
+    <li class="skill-node">
         <div data-bind="attr: {class: skillTree.character.getClass(id)}">
             <!-- if: hasImage == true -->
             <!-- <img width=16px height=16px data-bind="src: imageURL"> -->
@@ -28,17 +43,11 @@ $( document ).ready(function() {
             <div class="description">Placeholder description.</div>
         </div>
         <!-- ko if: children.length > 0 -->
-        <ul>
-            <li data-bind="template: { name: 'skillTemplate', foreach: children }">
-            </li>
+        <ul class="colorize-border" data-bind="template: { name: 'skill-template', foreach: children }">
         </ul>
         <!-- /ko -->
     </li>
 </script>
-<div class="tree">
-    <ul>
-        <li data-bind="template: { name: 'skillTemplate', foreach: skillTree.treeStructure }">
-        </li>
-    </ul>
+<div class="tree-view" data-bind="template: { name: 'tree-template', foreach: skillTree.treeStructure, afterRender: renderComplete }">
 </div>
-
+<div class="fill-background"></div>

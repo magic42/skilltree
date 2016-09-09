@@ -59,3 +59,38 @@ var skillTree = {
         });
     }
 }
+
+var renderComplete = function (elements) {
+    $('.tree-view').children('.tab input').attr('checked', true); //not working
+    colorize();
+}
+
+var colorize = function (elements) {
+    if ($('.tree-view').children().length === skillTree.treeStructure().length) {
+        var count = 0;
+        var frequency = .3;
+        $('.tab').each(function() {
+            red = Math.round(Math.sin(frequency*count + 0) * 127 + 228);
+            green = Math.round(Math.sin(frequency*count + 2) * 127 + 228);
+            blue = Math.round(Math.sin(frequency*count + 4) * 127 + 228);
+
+            $("<style>")
+            .prop("type", "text/css")
+            .html('\
+            #' + $(this).attr('id') + ' {\
+                background-color: rgb(' + red + ',' + green + ',' + blue + ');\
+            }\
+            #' + $(this).attr('id') + ' .colorize {\
+                background-color: rgb(' + red + ',' + green + ',' + blue + ');\
+            }\
+            #' + $(this).attr('id') + ' .colorize-border,\
+            #' + $(this).attr('id') + ' .colorize-border::before,\
+            #' + $(this).attr('id') + ' .colorize-border::after {\
+                border-color: rgb(' + (red - 100) + ',' + (green - 100) + ',' + (blue - 100) + ');\
+            }')
+            .appendTo("head");
+
+            count++;
+        });
+    }
+}

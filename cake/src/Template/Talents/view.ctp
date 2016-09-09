@@ -11,6 +11,16 @@
             <th><?= __('Name') ?></th>
             <td><?= h($talent->name) ?></td>
         </tr>
+        <tr>
+            <th><?= __('Photo') ?></th>
+            <td>
+                <?php if($talent->get('photo_dir') != "") : ?>
+                    <?php echo $this->Html->image('../files/talents/photo/' . $talent->get('photo_dir') . '/' . $talent->get('photo')); ?>
+                <?php else :?>
+                    <h5>No image found</h5>
+                <?php endif;?>
+             </td>
+        </tr>
     </table>
     <div class="related">
         <h4><?= __('Related Skills') ?></h4>

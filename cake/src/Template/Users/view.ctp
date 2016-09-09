@@ -25,7 +25,13 @@
         </tr>
         <tr>
             <th><?= __('Image') ?></th>
-            <td><?php echo $this->Html->image('../files/users/photo/' . $user->get('photo_dir') . '/' . $user->get('photo')); ?></td>
+            <td>
+            <?php if($user->get('photo_dir') != "") : ?>
+                <?php echo $this->Html->image('../files/users/photo/' . $user->get('photo_dir') . '/' . $user->get('photo')); ?>
+            <?php else :?>
+                <h5>No image found</h5>
+             <?php endif;?>
+            </td>
         </tr>
     </table>
     <div class="related">

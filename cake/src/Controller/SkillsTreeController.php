@@ -33,11 +33,13 @@ class SkillsTreeController extends AppController
      * @return \Cake\Network\Response|null
      */
     public function listTree()
-    {   
+    {
         $skillsTree = $this->SkillsTree->find(
             'threaded', 
             ['contain' => ['Skills' => ['Ranks', 'Talents']]]
-        )->toArray();
+        )
+            ->select(['id', 'parent_id', 'lft', 'rght', 'level', 'name', 'photo', 'photo_dir'])
+            ->toArray();
         $this->set(compact('skillsTree'));
         $this->set('_serialize', ['skillsTree']);
     }

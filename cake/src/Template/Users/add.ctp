@@ -1,7 +1,7 @@
 <?= $this->Nav->display(); ?>
 
 <div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
+    <?= $this->Form->create($user, ['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Add User') ?></legend>
         <?php
@@ -10,6 +10,7 @@
             echo $this->Form->input('role');
             echo $this->Form->input('skills._ids', ['options' => $skills]);
             echo $this->Form->input('stats._ids', ['options' => $stats]);
+            echo $this->Form->input('photo', ['type' => 'file']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

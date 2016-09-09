@@ -23,6 +23,10 @@
             <th><?= __('Modified') ?></th>
             <td><?= h($user->modified) ?></td>
         </tr>
+        <tr>
+            <th><?= __('Image') ?></th>
+            <td><?php echo $this->Html->image('../files/users/photo/' . $user->get('photo_dir') . '/' . $user->get('photo')); ?></td>
+        </tr>
     </table>
     <div class="related">
         <h4><?= __('Related Skills') ?></h4>

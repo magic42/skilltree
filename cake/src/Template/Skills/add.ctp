@@ -1,4 +1,5 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
+    <?php $this->Nav->show(); ?>
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('List Skills'), ['action' => 'index']) ?></li>

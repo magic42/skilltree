@@ -1,3 +1,35 @@
+.tree-view {
+    position: relative;
+    border-bottom: 1px #111 solid;
+}
+
+.tab {
+    background-color: #fff;
+    border-color: #111;
+    border-style: solid;
+    border-width: 1px 1px 0 1px;
+    border-radius: 10px 10px 0 0;
+    display: inline-block;
+    min-width: 100px;
+    padding: 5px;
+}
+
+.tree {
+    top: 100%;
+    display: none;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.tab input[type='radio'] {
+    display: none;
+}
+
+.tab input[type='radio']:checked + .tree {
+    display: block;
+}
+
 .tree ul {
     padding-top: 20px; position: relative;
 
@@ -17,15 +49,15 @@
     -moz-transition: all 0.5s;
 }
 
-.tree li::before, .tree li::after{
+.tree li::before, .tree li::after {
     content: '';
     position: absolute; top: 0; right: 50%;
-    border-top: 1px solid #ccc;
+    border-top: 3px solid #ccc;
     width: 50%; height: 20px;
 }
-.tree li::after{
+.tree li::after {
     right: auto; left: 50%;
-    border-left: 1px solid #ccc;
+    border-left: 3px solid #ccc;
 }
 
 .tree li:only-child::after, .tree li:only-child::before {
@@ -34,33 +66,37 @@
 
 .tree li:only-child{ padding-top: 0;}
 
-.tree li:first-child::before, .tree li:last-child::after{
+.tree li:first-child::before, .tree li:last-child::after {
     border: 0 none;
 }
-.tree li:last-child::before{
-    border-right: 1px solid #ccc;
+
+.tree li:last-child::before {
+    border-right: 3px solid #ccc;
     border-radius: 0 5px 0 0;
     -webkit-border-radius: 0 5px 0 0;
     -moz-border-radius: 0 5px 0 0;
 }
-.tree li:first-child::after{
+
+.tree li:first-child::after {
     border-radius: 5px 0 0 0;
     -webkit-border-radius: 5px 0 0 0;
     -moz-border-radius: 5px 0 0 0;
 }
-.tree ul ul::before{
+
+.tree ul ul::before {
     content: '';
     position: absolute; top: 0; left: 50%;
-    border-left: 1px solid #ccc;
+    border-left: 3px solid #ccc;
     width: 0; height: 20px;
 }
 .tree li div.skillDescription {
-    border: 1px solid #ccc;
+    background-color: #fff;
+    border: 3px solid #ccc;
     padding: 5px 10px;
     text-decoration: none;
     color: #666;
     font-family: arial, verdana, tahoma;
-    font-size: 11px;
+    font-size: 13px;
     display: inline-block;
 
     border-radius: 5px;
@@ -70,17 +106,23 @@
     transition: all 0.5s;
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
+
+    min-height: 50px;
+    min-width: 100px;
 }
+
 .tree li div.skillDescription:hover {
-    background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
+    background: #c8e4f8; color: #000; border: 3px solid #94a0b4;
     cursor: pointer;
 }
+
 .tree li div.skillDescription:hover + ul li::after,
 .tree li div.skillDescription:hover + ul li::before,
 .tree li div.skillDescription:hover + ul::before,
 .tree li div.skillDescription:hover + ul ul::before{
     border-color:  #94a0b4;
 }
+
 .tree .ranks div {
     border: 1px #f00 solid;
     border-radius: 100px;
@@ -90,9 +132,11 @@
     float: left;
     margin: 3px;
 }
+
 .tree .description {
     clear: both;
 }
+
 .tree .ranks div.achieved {
     background-color: #f00;
 }

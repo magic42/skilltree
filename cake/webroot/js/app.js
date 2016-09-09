@@ -57,6 +57,9 @@ var skillTree = {
             skillsTree = response.skillsTree;
             skillTree.treeStructure(skillsTree);
         });
+    },
+    getURL: function(photo_dir, photo) {
+        return "/files/skillstree/photo/" + photo_dir + "/" + photo;
     }
 }
 

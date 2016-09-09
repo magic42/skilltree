@@ -31,9 +31,7 @@ $( document ).ready(function() {
 <script id="skillTemplate" type="text/html">
     <li class="skill-node">
         <div data-bind="attr: {class: skillTree.character.getClass(id)}">
-            <!-- if: hasImage == true -->
-            <!-- <img width=16px height=16px data-bind="src: imageURL"> -->
-            <!-- -->
+            <img width=30px height=30px data-bind="attr: {src: skillTree.getURL(photo_dir, photo)}"/>
             <p data-bind="text: name"></p>
             <!-- ko if: skill -->
             <div class="ranks" data-bind="foreach: skill.ranks">
